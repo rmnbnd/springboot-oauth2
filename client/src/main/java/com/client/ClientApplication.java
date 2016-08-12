@@ -1,11 +1,8 @@
 package com.client;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
@@ -15,33 +12,26 @@ import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResour
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 @SpringBootApplication
 @EnableOAuth2Client
 public class ClientApplication extends SpringBootServletInitializer {
 
-    private static final Logger log = LoggerFactory.getLogger(ClientApplication.class);
-
-    @Value("${config.oauth2.accessTokenUri}")
+    @Value("${oauth2.accessTokenUri}")
     private String accessTokenUri;
 
-    @Value("${config.oauth2.userAuthorizationUri}")
+    @Value("${oauth2.userAuthorizationUri}")
     private String userAuthorizationUri;
 
-    @Value("${config.oauth2.clientID}")
+    @Value("${oauth2.clientID}")
     private String clientID;
 
-    @Value("${config.oauth2.clientSecret}")
+    @Value("${oauth2.clientSecret}")
     private String clientSecret;
 
     public static void main(String[] args) {
         SpringApplication.run(ClientApplication.class, args);
-    }
-
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(ClientApplication.class);
     }
 
     @Bean
@@ -55,8 +45,7 @@ public class ClientApplication extends SpringBootServletInitializer {
         resource.setClientSecret(clientSecret);
         resource.setAccessTokenUri(accessTokenUri);
         resource.setUserAuthorizationUri(userAuthorizationUri);
-        resource.setScope(Arrays.asList("read"));
-
+        resource.setScope(Collections.singletonList("read"));
         return resource;
     }
 }

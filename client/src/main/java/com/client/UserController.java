@@ -13,7 +13,7 @@ class UserController {
     @Autowired
     private OAuth2RestOperations restTemplate;
 
-    @Value("${config.oauth2.resourceURI}")
+    @Value("${oauth2.resourceURI}")
     private String resourceURI;
 
     @RequestMapping("/")
