@@ -1,9 +1,2 @@
 server:
-    port: 8082
-    contextPath: /api
-
-security:
-    oauth2:
-        resource:
-            jwt:
-                key-uri: http://localhost:8081/oauth/token_key
+    port: 8080
