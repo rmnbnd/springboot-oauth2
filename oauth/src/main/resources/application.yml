@@ -1,19 +1,2 @@
 server:
     port: 8081
-
-privateKey: |
-    -----BEGIN RSA PRIVATE KEY-----
-    MIIBOQIBAAJATs+UEbJAVuK/7mppmH7mYQjkqbVOSQyyL+OdXYUSajxNLtigcoId
-    pRg1t/znS4ttdMHbFHhXnpm9KnZXfs0uYQIDAQABAkBIKNvkUBeE9lzSCXDiBd8e
-    navwj2c8j3lfS8M8a6luxv6AH+e1eSgSOEswp4R+Ppi0d0qaEzKVh8uDt72vGCz5
-    AiEAnEgypWf/ZCAsvLttyBj6wefy+SooK+DwvjGC8mI5DYsCIQCBGOT31eMcCbNh
-    8d+WN9Vi/Dva0ae4Rrc7c+gvk0ZJQwIgWsdFQ/cozkwyMF7e4gBAiCnnZPwr4XED
-    5jZ0Tb7oTQkCIBdBAbV2zJL3WF2TMQAhDIno/2saCskRy92ksjUnpSh7AiEAhqcP
-    pgg1aNSfG1HWVPAzqAiJhG8Wy+M4Zu15I3LklQQ=
-    -----END RSA PRIVATE KEY-----
-
-publicKey: |
-    -----BEGIN PUBLIC KEY-----
-    MFswDQYJKoZIhvcNAQEBBQADSgAwRwJATs+UEbJAVuK/7mppmH7mYQjkqbVOSQyy
-    L+OdXYUSajxNLtigcoIdpRg1t/znS4ttdMHbFHhXnpm9KnZXfs0uYQIDAQAB
-    -----END PUBLIC KEY-----

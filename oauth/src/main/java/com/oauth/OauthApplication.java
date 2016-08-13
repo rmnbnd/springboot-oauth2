@@ -11,5 +11,4 @@ public class OauthApplication extends SpringBootServletInitializer {
         SpringApplication.run(OauthApplication.class, args);
     }
 
-
 }
