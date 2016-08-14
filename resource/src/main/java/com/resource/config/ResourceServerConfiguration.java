@@ -7,13 +7,23 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Configuration
 @EnableResourceServer
@@ -50,8 +60,19 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         super.configure(http);
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
                 .and()
+                .requestMatchers()
+                .antMatchers("/**")
+                .and()
                 .authorizeRequests()
                 .antMatchers("/user/**").access("hasRole('ROLE_USER')");
+
+        http.exceptionHandling().authenticationEntryPoint(new AuthenticationEntryPoint() {
+            @Override
+            public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
+                RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+                redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "login");
+            }
+        });
     }
 
 }
