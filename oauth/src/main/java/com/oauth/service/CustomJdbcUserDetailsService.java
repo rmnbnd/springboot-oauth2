@@ -16,7 +16,7 @@ public class CustomJdbcUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         CustomCredentials credentials = customCredentialsRepository.findByName(username);
-        if(credentials == null) {
+        if (credentials == null) {
             throw new UsernameNotFoundException("User " + username + " not found in database.");
         }
         return new User(credentials.getName(), credentials.getPassword(), true, true, true, true, credentials.getAuthorities());
