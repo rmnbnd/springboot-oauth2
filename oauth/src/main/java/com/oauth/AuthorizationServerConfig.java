@@ -58,7 +58,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.jdbc(dataSource)
+        clients.inMemory()
                 .withClient("my-trusted-client")
                 .authorizedGrantTypes("password", "refresh_token")
                 .scopes("read", "write", "trust")
