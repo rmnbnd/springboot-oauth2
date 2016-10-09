@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController {
 
     @RequestMapping("/admin")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasPermission(returnObject, 'WRITE')")
     public String resource() {
         return "Hi, Admin!";
     }
